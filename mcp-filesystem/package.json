@@ -1,0 +1,8 @@
+{
+  "name": "hospitalcare-mcp-filesystem",
+  "private": true,
+  "description": "Pinned install of the independently maintained MCP Filesystem server used (read-only, restricted to ../reference) by HospitalCare AI.",
+  "dependencies": {
+    "@modelcontextprotocol/server-filesystem": "2.0.1"
+  }
+}

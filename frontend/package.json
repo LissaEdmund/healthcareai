@@ -1,0 +1,25 @@
+{
+  "name": "hospitalcare-ai-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "HospitalCare AI prototype web UI. SYNTHETIC data only. Not for clinical use.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.30.6"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "4.7.0",
+    "typescript": "5.9.3",
+    "vite": "6.4.5"
+  }
+}

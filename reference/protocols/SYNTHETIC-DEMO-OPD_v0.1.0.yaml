@@ -1,0 +1,76 @@
+# ---------------------------------------------------------------------------
+# SYNTHETIC DEMONSTRATION PROTOCOL - NOT FOR CLINICAL USE
+#
+# These rules are placeholders written only to exercise HospitalCare AI's
+# protocol engine with synthetic data. They are NOT derived from, and do not
+# represent, any approved triage guideline. The thresholds are not clinically
+# validated. Do not use them for real patients.
+# ---------------------------------------------------------------------------
+protocol_id: SYNTHETIC-DEMO-OPD
+version: 0.1.0
+title: Synthetic demonstration OPD protocol (placeholder rules)
+status: synthetic_demo
+disclaimer: >-
+  SYNTHETIC DEMO PROTOCOL - placeholder rules for software demonstration only.
+  Not clinically validated. Results are not clinical priorities.
+source: Written by the HospitalCare AI developers for software testing (decision D-002).
+approval:
+  approved_by: null
+  approved_on: null
+  approval_reference: null
+
+priority_levels:
+  - code: DEMO-P1
+    rank: 1
+    label: Demo level 1 (highest, placeholder)
+  - code: DEMO-P2
+    rank: 2
+    label: Demo level 2 (placeholder)
+  - code: DEMO-P3
+    rank: 3
+    label: Demo level 3 (lowest, placeholder)
+
+evidence_fields:
+  temperature_c: {kind: observation, type: number, unit: "°C", requires_verification: true}
+  heart_rate_bpm: {kind: observation, type: number, unit: beats/min, requires_verification: true}
+  resp_rate_bpm: {kind: observation, type: number, unit: breaths/min, requires_verification: true}
+  spo2_pct: {kind: observation, type: number, unit: "%", requires_verification: true}
+  avpu: {kind: observation, type: text, requires_verification: true}
+  chest_pain: {kind: symptom, type: boolean}
+  difficulty_breathing: {kind: symptom, type: boolean}
+  convulsion: {kind: symptom, type: boolean}
+
+required_fields:
+  - temperature_c
+  - heart_rate_bpm
+  - resp_rate_bpm
+  - spo2_pct
+  - avpu
+  - chest_pain
+  - difficulty_breathing
+  - convulsion
+
+rules:
+  - rule_id: DEMO-R1
+    priority: DEMO-P1
+    escalation: true
+    match: any
+    description: Placeholder escalation rule (demo only)
+    criteria:
+      - {field: avpu, op: in, value: [V, P, U]}
+      - {field: spo2_pct, op: lt, value: 90}
+      - {field: convulsion, op: eq, value: true}
+  - rule_id: DEMO-R2
+    priority: DEMO-P2
+    match: any
+    description: Placeholder elevated rule (demo only)
+    criteria:
+      - {field: temperature_c, op: ge, value: 39.0}
+      - {field: heart_rate_bpm, op: gt, value: 120}
+      - {field: resp_rate_bpm, op: gt, value: 30}
+      - {field: chest_pain, op: eq, value: true}
+      - {field: difficulty_breathing, op: eq, value: true}
+
+default_priority:
+  priority: DEMO-P3
+  description: All required evidence present and no higher placeholder rule matched (demo only)
